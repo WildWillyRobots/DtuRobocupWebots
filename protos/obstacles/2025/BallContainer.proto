@@ -1,0 +1,180 @@
+#VRML_SIM R2025a utf8
+
+PROTO BallContainer [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+  field SFVec3f    ball0_translation -0.021 0 0.021
+  field SFVec3f    ball1_translation 0.021 0 0.021
+  field SFVec3f    ball2_translation 0 0.021 0.021
+  field SFVec3f    ball3_translation 0 -0.021 0.021
+  field SFVec3f    ball4_translation 0 0 0.063
+]
+{
+Robot {
+  translation IS translation
+  rotation IS rotation
+  supervisor TRUE
+  children [
+    DEF ball0 Pose {
+      translation IS ball0_translation
+      rotation 0 1 0 1.57
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 0 0
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.005
+            radius 0.021
+          }
+        }
+      ]
+    }
+    DEF ball1 Pose {
+      translation IS ball1_translation
+      rotation 0 1 0 1.57
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.33 0.66 1
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.005
+            radius 0.021
+          }
+        }
+      ]
+    }
+    DEF ball2 Pose {
+      translation IS ball2_translation
+      rotation 0 1 0 1.57
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 1
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.005
+            radius 0.021
+          }
+        }
+      ]
+    }
+    DEF ball3 Pose {
+      translation IS ball3_translation
+      rotation 0 1 0 1.57
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 1
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.005
+            radius 0.021
+          }
+        }
+      ]
+    }
+    DEF ball4 Pose {
+      translation IS ball4_translation
+      rotation 0 1 0 1.57
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 1 1 1
+            roughness 1
+            metalness 0
+          }
+          geometry Capsule {
+            height 0.005
+            radius 0.021
+          }
+        }
+      ]
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 1 0
+        anchor 0.007 0 0.005
+        maxStop 2.2
+      }
+      device [
+        PositionSensor {
+        }
+      ]
+      endPoint Solid {
+        translation -0.00017135575239534545 -8.470329472543e-22 0.00043243935820642607
+        rotation 0 1 0 0
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0.784314 0.784314 0.784314
+              metalness 0
+            }
+            geometry Mesh {
+              url [
+                "BallContainer.dae"
+              ]
+              materialIndex 0
+            }
+          }
+        ]
+        boundingObject Pose {
+          translation 0 0 0.05
+          children [
+            Cylinder {
+              height 0.1
+              radius 0.049
+            }
+          ]
+        }
+        physics Physics {
+          density 0.5
+        }
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor 0.784314 0.784314 0.784314
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "BallContainer.dae"
+        ]
+        materialIndex 1
+      }
+    }
+  ]
+  name "solid"
+  boundingObject Group {
+    children [
+      Pose {
+        translation 0.0172 -0.055 -0.0425
+        children [
+          Box {
+            size 0.12 0.01 0.085
+          }
+        ]
+      }
+      Pose {
+        translation 0.0172 0.055 -0.0425
+        children [
+          Box {
+            size 0.12 0.01 0.085
+          }
+        ]
+      }
+    ]
+  }
+  controller "obstacle2025BallContainer"
+}
+}

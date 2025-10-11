@@ -1,0 +1,141 @@
+#VRML_SIM R2025a utf8
+
+PROTO GuardRobot [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+  field SFString   name              "robotGuard"
+]
+{
+Robot {
+  translation IS translation
+  rotation IS rotation
+  children [
+    Pose {
+      translation 0.0125 -0.05 0
+      children [
+        DistanceSensor {
+          translation 0.03 0 0
+          rotation 0 1 0 1.57
+          name "sensor3"
+          type "infra-red"
+        }
+        DistanceSensor {
+          translation 0.045 0 0
+          rotation 0 1 0 1.57
+          name "sensor2"
+          type "infra-red"
+        }
+        DistanceSensor {
+          translation 0.06 0 0
+          rotation 0 1 0 1.57
+          name "sensor1"
+          type "infra-red"
+        }
+        DistanceSensor {
+          translation 0.075 0 0
+          rotation 0 1 0 1.57
+          name "sensor0"
+          type "infra-red"
+        }
+      ]
+    }
+    SpotLight {
+      attenuation 0 0 1
+      beamWidth 0.5
+      color 1 0 0
+      cutOffAngle 0.8
+      intensity 0.7
+      location 0.065 -0.05 0.03
+      radius 0.1
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 111997.70294447716
+      }
+      device [
+        RotationalMotor {
+          name "motor0"
+        }
+      ]
+      endPoint Solid {
+        translation -0.008999999999998407 0 0
+        rotation 0.03757253672901521 -0.9985884314972795 0.037542628618013926 4.7117727415987645
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry DEF regbot_wheel Cylinder {
+              height 0.006
+              radius 0.03
+            }
+          }
+        ]
+        boundingObject USE regbot_wheel
+        physics DEF regbot_wheel_physics Physics {
+        }
+        linearVelocity -0.05609624558991659 0.07432257317623481 3.272799592990401e-05
+        angularVelocity -2.4169254400936007 -1.7829123266627915 -1.247715295460764
+      }
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 134069.0070354549
+      }
+      device [
+        RotationalMotor {
+          name "motor1"
+        }
+      ]
+      endPoint Solid {
+        translation 0.13899999999997614 0 0
+        rotation -0.5833914076986809 0.5655533149221811 -0.5829270223654791 2.111498332455673
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              roughness 1
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.006
+              radius 0.03
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE regbot_wheel
+        physics DEF regbot_wheel_physics Physics {
+        }
+        linearVelocity -0.16103718784190005 0.21375180671328944 -1.1716176539083785e-05
+        angularVelocity -7.188508225604173 -5.417297663521556 -1.4099912734642017
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        roughness 1
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "GuardRobot.dae"
+        ]
+      }
+    }
+  ]
+  name IS name
+  boundingObject Pose {
+    translation 0.065 0 0.035
+    children [
+      Box {
+        size 0.13 0.225 0.12
+      }
+    ]
+  }
+  physics DEF regbot_physics Physics {
+  }
+  controller "obstacleCommonGuardRobot"
+} 
+}

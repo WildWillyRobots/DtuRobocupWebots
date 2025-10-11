@@ -1,0 +1,3 @@
+*.exe
+/controllers/*/build/
+/controllers/libs/libjpeg-turbo/

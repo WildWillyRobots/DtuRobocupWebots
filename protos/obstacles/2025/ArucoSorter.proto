@@ -1,0 +1,222 @@
+#VRML_SIM R2025a utf8
+
+PROTO ArucoSorter [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+]
+{
+Solid {
+  translation IS translation
+  rotation IS rotation
+  children [
+    DEF side1 Pose {
+      translation 0 0 0.125
+      children [
+        Shape {
+          appearance DEF sorter_side_app PBRAppearance {
+            baseColor 0.168627 0.168627 0.168627
+            roughness 1
+            metalness 0
+          }
+          geometry DEF sorter_side Box {
+            size 0.6 0.02 0.25
+          }
+        }
+      ]
+    }
+    DEF side2 Pose {
+      translation 0 0 0.125
+      rotation 0 0 1 1.57
+      children [
+        Shape {
+          appearance USE sorter_side_app
+          geometry USE sorter_side
+        }
+      ]
+    }
+    Pose {
+      translation 0.011 -0.15 0.125
+      rotation 0.5771968951617173 0.577656895078166 0.5771968951617173 2.09394
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "ArucoSorter_ArUco_4x4-10.png"
+              ]
+              filtering 0
+            }
+            roughness 1
+            metalness 0
+            IBLStrength 5
+          }
+          geometry Plane {
+            size 0.1333 0.1333
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.011 -0.15 0.125
+      rotation -0.5771978956908259 0.5776548956082386 0.5771978956908259 -2.093935307179586
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "ArucoSorter_ArUco_4x4-17.png"
+              ]
+              filtering 0
+            }
+            roughness 1
+            metalness 0
+            IBLStrength 5
+          }
+          geometry Plane {
+            size 0.1333 0.1333
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.011 0.15 0.125
+      rotation -0.5771978956908259 0.5776548956082386 0.5771978956908259 -2.093935307179586
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "ArucoSorter_ArUco_4x4-14.png"
+              ]
+              filtering 0
+            }
+            roughness 1
+            metalness 0
+            IBLStrength 5
+          }
+          geometry Plane {
+            size 0.1333 0.1333
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.011 0.15 0.125
+      rotation 0.5771968951617173 0.577656895078166 0.5771968951617173 2.09394
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "ArucoSorter_ArUco_4x4-13.png"
+              ]
+              filtering 0
+            }
+            roughness 1
+            metalness 0
+            IBLStrength 5
+          }
+          geometry Plane {
+            size 0.1333 0.1333
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.15 -0.011 0.125
+      rotation -1 0 0 -1.5700053071795859
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "ArucoSorter_ArUco_4x4-11.png"
+              ]
+              filtering 0
+            }
+            roughness 1
+            metalness 0
+            IBLStrength 5
+          }
+          geometry Plane {
+            size 0.1333 0.1333
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.15 -0.011 0.125
+      rotation -1 0 0 -1.5700053071795859
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "ArucoSorter_ArUco_4x4-16.png"
+              ]
+              filtering 0
+            }
+            roughness 1
+            metalness 0
+            IBLStrength 5
+          }
+          geometry Plane {
+            size 0.1333 0.1333
+          }
+        }
+      ]
+    }
+    Pose {
+      translation 0.15 0.011 0.125
+      rotation 3.389161082964233e-09 0.7073862260364623 0.7068272258578407 3.14159
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "ArucoSorter_ArUco_4x4-12.png"
+              ]
+              filtering 0
+            }
+            roughness 1
+            metalness 0
+            IBLStrength 5
+          }
+          geometry Plane {
+            size 0.1333 0.1333
+          }
+        }
+      ]
+    }
+    Pose {
+      translation -0.15 0.011 0.125
+      rotation 3.389161082964233e-09 0.7073862260364623 0.7068272258578407 3.14159
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColorMap ImageTexture {
+              url [
+                "ArucoSorter_ArUco_4x4-15.png"
+              ]
+              filtering 0
+            }
+            roughness 1
+            metalness 0
+            IBLStrength 5
+          }
+          geometry Plane {
+            size 0.1333 0.1333
+          }
+        }
+      ]
+    }
+  ]
+  name "solidArucoSorter"
+  boundingObject Group {
+    children [
+      USE side2
+      USE side1
+    ]
+  }
+}
+}

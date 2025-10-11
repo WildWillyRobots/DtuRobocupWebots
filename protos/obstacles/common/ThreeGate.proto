@@ -1,0 +1,62 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "Gate.proto"
+
+PROTO ThreeGate [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+  field SFColor    edgeColor         0.54902 0.54902 0.54902
+  field SFColor    surfaceColor      0.262745 0.262745 0.262745
+]
+{
+  Solid {
+  translation IS translation
+  rotation IS rotation
+  children [
+    Gate {
+      translation 0.1 0 0.025
+    }
+    Gate {
+      translation -0.049619 0.0868211 0.025
+      rotation 0 0 1 2.09
+      name "gate(1)"
+    }
+    Gate {
+      translation -0.049619 -0.0868211 0.025
+      rotation 0 0 1 -2.09
+      name "gate(2)"
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor IS edgeColor
+        roughness 1
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "ThreeGate.dae"
+        ]
+        materialIndex 0
+      }
+    }
+    Shape {
+      appearance PBRAppearance {
+        baseColor IS surfaceColor
+        roughness 1
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "ThreeGate.dae"
+        ]
+        materialIndex 1
+      }
+    }
+  ]
+  name "solidThreeGate"
+  boundingObject Cylinder {
+    height 0.05
+    radius 0.6
+  }
+}
+}

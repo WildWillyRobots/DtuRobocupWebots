@@ -1,0 +1,158 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "Gate.proto"
+
+PROTO Axe [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+  field SFColor    axeColor          0.0588235 0.0588235 0.0588235
+  field SFColor    axeEdgeColor      0.913725 0.913725 0.913725
+]
+{
+Robot {
+  name "robotAxe"
+  translation IS translation
+  rotation IS rotation
+  children [
+    Gate {
+      translation 0.08 -0.17 0 
+      rotation 0 0 1 1.57
+      name "back_gate"
+    }
+    Gate {
+      translation -0.02 0.28 0
+      rotation 0 0 1 -1.57
+      name "front_gate"
+    }
+    HingeJoint {
+      jointParameters HingeJointParameters {
+        position 0
+        anchor 0 0 0.61
+      }
+      device [
+        RotationalMotor {
+          name "motor_axe"
+        }
+      ]
+      endPoint Solid {
+        translation -2.0001915475797285e-05 -3.0437401164375807e-05 0.6099879355205847
+        rotation 0.9999999999770258 6.590793837876234e-06 -1.5842070326744905e-06 4.290417096473135
+        children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor IS axeEdgeColor
+              roughness 1
+              metalness 0
+            }
+            geometry Mesh {
+              url [
+                "Axe_Axe.dae"
+              ]
+              materialIndex 1
+            }
+          }
+          Shape {
+            appearance PBRAppearance {
+              baseColor IS axeColor
+              roughness 1
+              metalness 0
+            }
+            geometry Mesh {
+              url [
+                "Axe_Axe.dae"
+              ]
+              materialIndex 0
+            }
+          }
+        ]
+        boundingObject Group {
+          children [
+            Pose {
+              translation 0.005 -0.15646 -0.489511
+              rotation 1 0 0 2.12
+              children [
+                Box {
+                  size 0.01 0.4 0.4
+                }
+              ]
+            }
+            Pose {
+              translation 0.005 0.150558 0.483905
+              rotation 1 0 0 2.12
+              children [
+                Box {
+                  size 0.01 0.4 0.4
+                }
+              ]
+            }
+            Pose {
+              translation 0.005 0.145805 -0.488181
+              rotation 1 0 0 -2.123185307179586
+              children [
+                Box {
+                  size 0.01 0.4 0.4
+                }
+              ]
+            }
+            Pose {
+              translation 0.005 -0.144353 0.489473
+              rotation 1 0 0 -2.123185307179586
+              children [
+                Box {
+                  size 0.01 0.4 0.4
+                }
+              ]
+            }
+          ]
+        }
+        physics Physics {
+          density -1
+          mass 5
+        }
+      }
+    }
+    CadShape {
+      url [
+        "Axe_Table.dae"
+      ]
+    }
+  ]
+  boundingObject Group {
+    children [
+      Pose {
+        translation -0.055 -0.415 0.2675
+        children [
+          Box {
+            size 0.03 0.03 0.535
+          }
+        ]
+      }
+      Pose {
+        translation -0.585 0.415 0.2675
+        children [
+          Box {
+            size 0.03 0.03 0.535
+          }
+        ]
+      }
+      Pose {
+        translation -0.585 -0.415 0.2675
+        children [
+          Box {
+            size 0.03 0.03 0.535
+          }
+        ]
+      }
+      Pose {
+        translation -0.055 0.415 0.2675
+        children [
+          Box {
+            size 0.03 0.03 0.535
+          }
+        ]
+      }
+    ]
+  }
+  controller "obstacleCommonAxe"
+}
+}

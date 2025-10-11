@@ -1,0 +1,90 @@
+#VRML_SIM R2025a utf8
+# template language: javascript
+
+PROTO Gate [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+  field SFColor    color             1 1 0
+  field SFString   name              "Gate"
+  field SFBool     has_foot         TRUE
+]
+{
+%<
+  const hasFoot = fields.has_foot.value;
+>%
+Solid {
+  translation IS translation
+  rotation IS rotation
+  children [
+    Shape {
+      appearance DEF GateAppearance PBRAppearance {
+        baseColor IS color
+        roughness 1
+        metalness 0
+      }
+      geometry Mesh {
+        url [
+          "Gate.dae"
+        ]
+        materialIndex 0
+      }
+    }
+    %< if (hasFoot) { >%
+    Shape {
+      appearance USE GateAppearance
+      geometry Mesh {
+        url [
+          "gate.dae"
+        ]
+        materialIndex 1
+      }
+    }
+    %< } >%
+  ]
+  name IS name
+  boundingObject Group {
+    children [
+      Pose {
+        translation 0 0 0.2
+        children [
+          Cylinder {
+            height 0.4
+            radius 0.008
+            subdivision 16
+          }
+        ]
+      }
+      Pose {
+        translation 0.45 0 0.2
+        children [
+          Cylinder {
+            height 0.4
+            radius 0.008
+            subdivision 16
+          }
+        ]
+      }
+      %< if (hasFoot) { >%
+      Pose {
+        translation -0.023 0.048 0.0125
+        rotation 0 0 1 1.83
+        children [
+          Box {
+            size 0.098 0.004 0.025
+          }
+        ]
+      }
+      Pose {
+        translation -0.023 -0.048 0.0125
+        rotation 0 0 1 1.31
+        children [
+          Box {
+            size 0.098 0.004 0.025
+          }
+        ]
+      }
+      %< } >%      
+    ]
+  }
+}
+}

@@ -1,0 +1,136 @@
+#VRML_SIM R2025a utf8
+
+PROTO Goal [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+]
+{
+Robot {
+  translation IS translation
+  rotation IS rotation
+  children [
+    TouchSensor {
+      name "touchsensor_goal"
+      boundingObject Pose {
+        translation 0 0.115 0.1
+        children [
+          Box {
+            size 0.2 0.02 0.18
+          }
+        ]
+      }
+    }
+    Solid {
+      translation 0 0 0.1
+      children [
+        Pose {
+          translation 0 0.11 0
+          rotation 0 0.7071067811865476 0.7071067811865476 -3.1415853071795863
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColorMap ImageTexture {
+                  url [
+                    "Goal_ArUco_4x4-25.png"
+                  ]
+                  filtering 0
+                }
+                roughness 1
+                metalness 0
+                IBLStrength 5
+              }
+              geometry Plane {
+                size 0.1333 0.1333
+              }
+            }
+          ]
+        }
+        Pose {
+          translation 0 -0.11 0
+          rotation 1 0 0 1.57
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColorMap ImageTexture {
+                  url [
+                    "Goal_ArUco_4x4-33.png"
+                  ]
+                  filtering 0
+                }
+                roughness 1
+                metalness 0
+                IBLStrength 5
+              }
+              geometry Plane {
+                size 0.1333 0.1333
+              }
+            }
+          ]
+        }
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0.584314 0.584314 0.584314
+            roughness 1
+            metalness 0
+          }
+          geometry DEF goalbox Box {
+            size 0.2 0.2 0.2
+          }
+        }
+        Pose {
+          translation 0 0 0.15
+          children [
+            Shape {
+              appearance PBRAppearance {
+                baseColor 1 0.333333 0
+                transparency 0.15
+                metalness 0
+              }
+              geometry Cylinder {
+                height 0.1
+                radius 0.05
+              }
+            }
+          ]
+        }
+        HingeJoint {
+          jointParameters HingeJointParameters {
+            position 3161.0995200003485
+            axis 0 0 1
+          }
+          device [
+            RotationalMotor {
+              name "motor_goal"
+            }
+          ]
+          endPoint Solid {
+            translation 0 0 0.14999999999999974
+            rotation 0 0 -1 5.6258748181630365
+            children [
+              LED {
+                name "led_goal"
+                children [
+                  SpotLight {
+                    attenuation 0 0 1
+                    beamWidth 0.7
+                    color 0 0 0
+                    direction 0 1 0
+                    intensity 10
+                    on FALSE
+                  }
+                ]
+                color [
+                  1 0.333333 0
+                ]
+              }
+            ]
+          }
+        }
+      ]
+      boundingObject USE goalbox
+    }
+  ]
+  name "robotGoal"
+  controller "obstacleCommonGoal"
+}
+}

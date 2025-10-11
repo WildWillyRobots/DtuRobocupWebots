@@ -1,0 +1,63 @@
+#VRML_SIM R2025a utf8
+# template language: javascript
+
+PROTO Fence [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+  field SFVec3f    size              1 0.05 0.1
+  field SFColor    outsideColor      0 0 0.8
+  field SFColor    insideColor       0 0.9 0
+  field SFString   name              "fence"
+]
+{
+Transform {
+  translation IS translation
+  rotation IS rotation
+
+  children[ 
+    Solid {
+      translation %<= fields.size.value.x / 2 >% %<= fields.size.value.y / 2 >% %<= fields.size.value.z / 2 >% 
+      children [
+        Transform 
+        {
+          translation 0 -0.0005 0
+          children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor IS outsideColor
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size %<= fields.size.value.x >% %<= fields.size.value.y -0.001 >% %<= fields.size.value.z >% 
+            }
+          }
+          ]
+        }
+        Transform 
+        {
+          translation 0 %<= fields.size.value.y/2 - 0.0005 >% 0
+          children [
+          Shape {
+            appearance PBRAppearance {
+              baseColor IS insideColor
+              roughness 1
+              metalness 0
+            }
+            geometry Box {
+              size %<= fields.size.value.x >% %<= 0.001 >% %<= fields.size.value.z >% 
+            }
+          }
+          ]
+        }
+      ]
+      name IS name
+      boundingObject Shape {
+        geometry Box {
+          size IS size
+        }
+      }
+    }
+  ]
+}
+}

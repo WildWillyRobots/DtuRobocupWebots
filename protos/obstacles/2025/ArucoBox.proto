@@ -1,0 +1,35 @@
+#VRML_SIM R2025a utf8
+
+PROTO ArucoBox [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+  field SFString   name              "solidArUcoBox"
+  field MFString   arUcoTexture      ["ArucoBox_ArUco_4x4-53.png"]
+]
+{
+Solid {
+  translation IS translation
+  rotation IS rotation
+  children [
+    Shape {
+      appearance PBRAppearance {
+        baseColorMap ImageTexture {
+          url IS arUcoTexture          
+          filtering 0
+        }
+        roughness 1
+        metalness 0
+      }
+      geometry DEF arucobox20 Box {
+        size 0.06 0.06 0.06
+      }
+    }
+  ]
+  name IS name
+  boundingObject USE arucobox20
+  physics Physics {
+    density -1
+    mass 0.1
+  }
+}
+}

@@ -1,0 +1,133 @@
+#VRML_SIM R2025a utf8
+
+PROTO LuggageShuttle [
+  field SFVec3f    translation       0 0 0
+  field SFRotation rotation          0 0 1 0
+]
+{
+Robot {
+  translation IS translation
+  rotation IS rotation
+  children [
+    SliderJoint {
+      jointParameters JointParameters {
+        position 2.089307753019527
+        axis 0 1 0
+      }
+      device [
+        PositionSensor {
+        }
+        LinearMotor {
+          acceleration 0.2
+          minPosition -0.0015772029076268623
+          maxPosition 3.4
+          sound ""
+        }
+      ]
+      endPoint Solid {
+        translation -3.32403e-09 2.089307753019527 -8.27143e-05
+        rotation -0.12250220054336088 -0.992424405728327 0.009327903130460198 6.32633276923211e-08
+        children [
+          Pose {
+            translation 0 0 -0.005
+            children [
+              Shape {
+                appearance DEF platform PBRAppearance {
+                  baseColor 1 0.666667 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry DEF targetsurface Box {
+                  size 0.13 0.3 0.01
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0 0 -0.05
+            children [
+              Shape {
+                appearance DEF platform PBRAppearance {
+                  baseColor 1 0.666667 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Box {
+                  size 0.13 0.22 0.1
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0 0.1 -0.08
+            rotation 0 1 0 1.57
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.1
+                  radius 0.05
+                }
+              }
+            ]
+          }
+          Pose {
+            translation 0 -0.1 -0.08
+            rotation 0 1 0 1.57
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 0 0 0
+                  roughness 1
+                  metalness 0
+                }
+                geometry Cylinder {
+                  height 0.1
+                  radius 0.05
+                }
+              }
+            ]
+          }
+          Pose {
+            translation -0.0655 0 -0.05
+            rotation -0.5771968951617173 0.5771968951617173 0.577656895078166 -2.093935307179586
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColorMap ImageTexture {
+                    url [
+                      "LuggageShuttle_ArUco_4x4-5.png"
+                    ]
+                    filtering 0
+                  }
+                  roughness 1
+                  metalness 0
+                }
+                geometry Plane {
+                  size 0.0466 0.0466
+                }
+              }
+            ]
+          }
+        ]
+        boundingObject Pose {
+          translation 0 0 -0.065
+          children [
+            Box {
+              size 0.13 0.3 0.13
+            }
+          ]
+        }
+        physics Physics {
+        }
+      }
+    }
+  ]
+  name "robotLuggageShuttle"
+  controller "obstacle2025LuggageShuttle"
+}
+}
